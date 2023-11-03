@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import './globals.css'
+import Image from 'next/image'
+import logo from '@/public/assets/logo.svg'
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -21,7 +23,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} antialiased bg-gray-900 text-gray-100`}>{children}</body>
+      <body className={`${roboto.className} antialiased bg-gray-900 text-gray-100 flex flex-col justify-center min-h-screen`}>
+        <header className='w-full py-8 max-w-[1180px] mx-auto'>
+          <Image src={logo} width={129.74} height={52} alt='logo da loja' />
+        </header>
+        {children}
+        </body>
     </html>
   )
 }
