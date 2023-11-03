@@ -11,3 +11,7 @@
 body, input, textarea, button {
   font-weight: 400;
 }
+
+.calc-max-width {
+  max-width: calc(100vw - ((100vw - 1180px) / 2));
+}

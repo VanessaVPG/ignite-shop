@@ -16,10 +16,17 @@ const config: Config = {
 
       'green-500': '#00875f',
       'green-300': '#00b37e',
+      'black': '#000',
+    },
+    fontSize: {
+      'md': '1.125rem',
+      'lg': '1.25rem',
+      'xl': '1.5rem',
+      '2xl': '2rem', 
     },
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient': 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },

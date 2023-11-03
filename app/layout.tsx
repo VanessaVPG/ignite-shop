@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.className} antialiased bg-gray-900 text-gray-100 flex flex-col justify-center min-h-screen`}>
-        <header className='w-full py-8 max-w-[1180px] mx-auto'>
+        <header className='w-full pb-8 pt-2 max-w-[1180px] mx-auto'>
           <Image src={logo} width={129.74} height={52} alt='logo da loja' />
         </header>
         {children}
