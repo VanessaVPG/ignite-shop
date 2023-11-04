@@ -1,19 +1,10 @@
 'use client'
 import { useKeenSlider } from "keen-slider/react"
+import { products } from "../lib/products"
+import { Product } from "./Product"
 import 'keen-slider/keen-slider.min.css'
-import { Product } from './Product'
 
-interface CarouselProps {
-  products: {
-    id: string,
-    name: string,
-    price: number,
-    image: string,
-    description: string,
-  }[]
-}
-
-export default function Carousel({ products }: CarouselProps) {
+export default function Carousel() {
   const [sliderRef] = useKeenSlider({
     slides:
     {
@@ -24,10 +15,11 @@ export default function Carousel({ products }: CarouselProps) {
 
   return (
     <main ref={sliderRef} className="keen-slider flex calc-max-width ml-auto min-h-[41rem]">
+
       {
         products.map((product) => {
           return (
-            <Product className="keen-slider__slide" src={product.image} key={product.id} name={product.name} price={product.price} />
+            <Product className="keen-slider__slide" src={product.src} key={product.id} name={product.name} price={product.price} />
           )
 
 
