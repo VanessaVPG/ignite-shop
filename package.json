@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "blurhash": "^2.0.5",
     "keen-slider": "^6.8.6",
     "next": "14.0.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "stripe": "^14.3.0"
   },
   "devDependencies": {
     "@types/node": "^20",
