@@ -3,7 +3,7 @@ import axios from "axios";
 export async function handleBuyProduct(id: string) {
   try {
     const response = await axios.post(
-      'http://localhost:3000/api/checkout',
+      '/api/checkout',
       {
         priceId: id,
       },
