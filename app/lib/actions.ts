@@ -8,7 +8,6 @@ export async function handleBuyProduct(id: string) {
         priceId: id,
       },
     )
-
     const { checkoutUrl } = response.data
     window.location.href = checkoutUrl
 

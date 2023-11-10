@@ -4,8 +4,16 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(req: NextRequest) {
   const { priceId } = await req.json()
 
-  if (!priceId)
+  if (req.method !== 'POST') {
+    return NextResponse.json({ error: 'Invalid method' }, { status: 405 })
+  }
+
+  if (!priceId) {
     return NextResponse.json({ error: 'Price not found' }, { status: 404 })
+  }
+
+
+  
 
   const successUrl = `${process.env.NEXT_URL}/success`
   const cancelUrl = `${process.env.NEXT_URL}/cancel`

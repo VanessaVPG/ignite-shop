@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <main className="grid grid-cols-2 items-stretch gap-16 max-w-[1180px] w-full my-0 mx-auto">
       <div className="w-full flex justify-center items-center max-w-xl h-[656px] bg-gradient-to-b from-[#1ea483] to-[#7465d4] rounded-lg">
-        {<Image src={product.images[0]} width={480} height={100} alt="imagem" objectFit="cover"></Image>}
+        {<Image src={product.images[0]} width={480} height={100} alt="imagem"></Image>}
       </div>
 
       <div className="flex flex-col">
