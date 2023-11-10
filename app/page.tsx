@@ -3,6 +3,7 @@ import Carousel from "./components/Carousel"
 import { stripe } from "./lib/stripe";
 import Stripe from "stripe";
 import Loading from "./loading";
+export const revalidate = 600;
 
 export default async function Home() {
 
@@ -15,19 +16,19 @@ export default async function Home() {
     const price = product.default_price as Stripe.Price;
     return {
       id: product.id,
-    name: product.name,
-    image: product.images[0],
-    price: price?.unit_amount
-      ? new Intl.NumberFormat('pt-BR', {
+      name: product.name,
+      image: product.images[0],
+      price: price?.unit_amount
+        ? new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL',
-        }).format( price.unit_amount / 100)
-      : 'N/A',
-    description: product.description || '',
+        }).format(price.unit_amount / 100)
+        : 'N/A',
+      description: product.description || '',
     }
   })
   return (
-    <Suspense fallback={<Loading/>}>
+    <Suspense fallback={<Loading />}>
 
       <Carousel products={products} />
     </Suspense>

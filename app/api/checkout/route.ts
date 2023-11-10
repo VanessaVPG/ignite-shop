@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
 
   
 
-  const successUrl = `${process.env.NEXT_URL}/success`
+  const successUrl = `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`
   const cancelUrl = `${process.env.NEXT_URL}/cancel`
 
   const checkoutSession = await stripe.checkout.sessions.create({

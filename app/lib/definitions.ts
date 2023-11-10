@@ -7,3 +7,9 @@ export interface ProductsProps {
     description: string,
   }[]
 }
+
+export interface searchParamsProps {
+  session_id: string
+  
+
+}
