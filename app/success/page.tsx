@@ -4,9 +4,13 @@ import Stripe from "stripe";
 import { stripe } from "../lib/stripe";
 import { searchParamsProps } from "../lib/definitions";
 import { Suspense } from "react";
+import { NextResponse } from "next/server";
+import { redirect } from "next/navigation";
 
 export default async function Success({ searchParams }: { searchParams: searchParamsProps }) {
-  console.log(searchParams);
+  if(!searchParams.session_id){
+    redirect('/')
+  }
   const sessionId = String(searchParams?.session_id)
 
   const session = await stripe.checkout.sessions.retrieve(sessionId, {
@@ -19,7 +23,7 @@ export default async function Success({ searchParams }: { searchParams: searchPa
   
   return (
     <main className="flex flex-col items-center justify-center max-w-[1180px] w-full my-0 mx-auto h-[656px]">
-      <h1 className="font-bold text-2xl leading-[140%] text-gray-100">Compra efetuada</h1>
+      <h1 className="font-bold text-2xl leading-[140%] text-gray-100">Compra efetuada!</h1>
       <div className="w-32 h-36 bg-gradient rounded-lg p-1 flex items-center justify-center mt-16">
         <Suspense fallback={'carregando'}>
           <Image src={product.images[0]} alt="" width={115} height={106.42}></Image>

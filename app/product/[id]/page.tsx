@@ -1,16 +1,29 @@
 
 import BuyButton from "@/app/components/BuyButton";
+import { ProductsProps } from "@/app/lib/definitions";
 import { stripe } from "@/app/lib/stripe";
+import { Metadata } from "next";
 import Image from "next/image";
 import Stripe from "stripe";
 
+async function getProduct(id: string) {
+  const response = await stripe.products.retrieve(id, {
+    expand: ["default_price"],
+  })
+  return response
+}
+
+export const generateMetadata = async ({ params }: { params: { id: string } }): Promise<Metadata> => {
+  const product = await getProduct(params.id)
+  return {
+    title: product.name,
+  };
+};
 
 export default async function Page({ params }: { params: { id: string } }) {
-
-  const product = await stripe.products.retrieve(params.id, {
-    expand: ['default_price'],
-  });
+  const product = await getProduct(params.id)
   const price = product.default_price as Stripe.Price;
+
 
   return (
     <main className="grid grid-cols-2 items-stretch gap-16 max-w-[1180px] w-full my-0 mx-auto">
@@ -23,7 +36,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           {product.name}
         </h1>
         <span className="mt-4 leading-[140%] text-2xl font-normal text-green-300">
-          {price?.unit_amount
+          {price.unit_amount
             ? new Intl.NumberFormat('pt-BR', {
               style: 'currency',
               currency: 'BRL',
