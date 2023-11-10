@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import Carousel from "./components/Carousel"
-import Loading from "./loading";
 import { stripe } from "./lib/stripe";
 import Stripe from "stripe";
+import Loading from "./loading";
 
 export default async function Home() {
 
@@ -15,15 +15,21 @@ export default async function Home() {
     const price = product.default_price as Stripe.Price;
     return {
       id: product.id,
-      name: product.name,
-      image: product.images[0],
-      price: price?.unit_amount ? price.unit_amount / 100 : 0,
-      description: product.description || '',
+    name: product.name,
+    image: product.images[0],
+    price: price?.unit_amount
+      ? new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        }).format( price.unit_amount / 100)
+      : 'N/A',
+    description: product.description || '',
     }
   })
   return (
-      <Suspense fallback={<Loading />}>
-       <Carousel products={products} />
-      </Suspense>
+    <Suspense fallback={<Loading/>}>
+
+      <Carousel products={products} />
+    </Suspense>
   );
 }

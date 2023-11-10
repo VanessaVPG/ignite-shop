@@ -2,18 +2,12 @@
 import { useKeenSlider } from "keen-slider/react"
 import 'keen-slider/keen-slider.min.css'
 import { Product } from './Product'
+import { ProductsProps } from "../lib/definitions"
+import Link from "next/link"
 
-interface CarouselProps {
-  products: {
-    id: string,
-    name: string,
-    price: number,
-    image: string,
-    description: string,
-  }[]
-}
 
-export default function Carousel({ products }: CarouselProps) {
+
+export default function Carousel({ products }: ProductsProps) {
   const [sliderRef] = useKeenSlider({
     slides:
     {
@@ -27,7 +21,9 @@ export default function Carousel({ products }: CarouselProps) {
       {
         products.map((product) => {
           return (
-            <Product className="keen-slider__slide" src={product.image} key={product.id} name={product.name} price={product.price} />
+            <Link href={`/product/${product.id}`} key={product.id} prefetch>
+            <Product className="keen-slider__slide" src={product.image} name={product.name} price={product.price} />
+            </Link> 
           )
 
 
